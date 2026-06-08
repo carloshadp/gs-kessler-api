@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://kessler.com.br/ws/debris"
+           xmlns:tns="http://kessler.com.br/ws/debris"
+           elementFormDefault="qualified">
+
+    <!-- ===================== GET BY NORAD ID ===================== -->
+    <xs:element name="GetDebrisByNoradIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="noradId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetDebrisByNoradIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="debris" type="tns:DebrisInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ===================== CALCULATE COLLISION RISK ===================== -->
+    <xs:element name="CalculateCollisionRiskRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="noradId1" type="xs:string"/>
+                <xs:element name="noradId2" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CalculateCollisionRiskResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="noradId1" type="xs:string"/>
+                <xs:element name="noradId2" type="xs:string"/>
+                <xs:element name="altitudeDifferenceKm" type="xs:double"/>
+                <xs:element name="collisionProbability" type="xs:double"/>
+                <xs:element name="riskClassification" type="xs:string"/>
+                <xs:element name="recommendation" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ===================== TIPOS COMPLEXOS ===================== -->
+    <xs:complexType name="DebrisInfo">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="noradId" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="altitudeKm" type="xs:double"/>
+            <xs:element name="inclinationDeg" type="xs:double"/>
+            <xs:element name="eccentricity" type="xs:double"/>
+            <xs:element name="riskLevel" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="orbitalPeriodMinutes" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
