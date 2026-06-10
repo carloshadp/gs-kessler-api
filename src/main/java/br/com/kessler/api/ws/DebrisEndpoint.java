@@ -55,14 +55,14 @@ public class DebrisEndpoint {
         String risk = classifyRisk(probability);
         String recommendation = buildRecommendation(risk, altDiff);
 
-        return CalculateCollisionRiskResponse.builder()
-                .noradId1(request.getNoradId1())
-                .noradId2(request.getNoradId2())
-                .altitudeDifferenceKm(Math.round(altDiff * 100.0) / 100.0)
-                .collisionProbability(Math.round(probability * 1_000_000.0) / 1_000_000.0)
-                .riskClassification(risk)
-                .recommendation(recommendation)
-                .build();
+        CalculateCollisionRiskResponse response = new CalculateCollisionRiskResponse();
+        response.setNoradId1(request.getNoradId1());
+        response.setNoradId2(request.getNoradId2());
+        response.setAltitudeDifferenceKm(Math.round(altDiff * 100.0) / 100.0);
+        response.setCollisionProbability(Math.round(probability * 1_000_000.0) / 1_000_000.0);
+        response.setRiskClassification(risk);
+        response.setRecommendation(recommendation);
+        return response;
     }
 
     private Long findIdByNoradId(String noradId) {

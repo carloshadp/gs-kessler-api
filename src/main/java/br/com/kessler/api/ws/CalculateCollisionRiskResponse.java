@@ -4,11 +4,9 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 @XmlRootElement(name = "CalculateCollisionRiskResponse", namespace = "http://kessler.com.br/ws/debris")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CalculateCollisionRiskResponse {
